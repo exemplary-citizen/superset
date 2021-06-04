@@ -23,6 +23,7 @@ import Icon from 'src/components/Icon';
 import { Tooltip } from 'src/components/Tooltip';
 import copyTextToClipboard from 'src/utils/copy';
 import withToasts from 'src/messageToasts/enhancers/withToasts';
+import { Dropdown, Menu } from 'src/common/components';
 import { useUrlShortener } from 'src/common/hooks/useUrlShortener';
 import EmbedCodeButton from './EmbedCodeButton';
 import ConnectedDisplayQueryButton from './DisplayQueryButton';
@@ -181,26 +182,47 @@ const ExploreActionButtons = (props: ExploreActionButtonsProps) => {
             onClick={doShareEmail}
           />
           <EmbedCodeButton latestQueryFormData={latestQueryFormData} />
-          <ActionButton
-            icon={<i className="fa fa-file-code-o" />}
-            text=".JSON"
-            tooltip={t('Export to .JSON format')}
-            onClick={doExportJson}
-          />
-          <ActionButton
-            icon={<i className="fa fa-file-text-o" />}
-            text=".CSV"
-            tooltip={t('Export to .CSV format')}
-            onClick={doExportCSV}
-            className={exportToCSVClasses}
-          />
-          <ActionButton
-            icon={<i className="fa fa-file-text-o" />}
-            text=".XML"
-            tooltip={t('Export to .XML format')}
-            onClick={doExportXML}
-            className={exportToCSVClasses}
-          />
+          <Dropdown
+            overlay={
+              <Menu>
+                <Menu.Item>
+                  <ActionButton
+                    icon={<i className="fa fa-file-code-o" />}
+                    text=".JSON"
+                    tooltip={t('Export to .JSON format')}
+                    onClick={doExportJson}
+                  />
+                </Menu.Item>
+                <Menu.Item>
+                  <ActionButton
+                    icon={<i className="fa fa-file-text-o" />}
+                    text=".CSV"
+                    tooltip={t('Export to .CSV format')}
+                    onClick={doExportCSV}
+                    className={exportToCSVClasses}
+                  />
+                </Menu.Item>
+                <Menu.Item>
+                  <ActionButton
+                    icon={<i className="fa fa-file-text-o" />}
+                    text=".XML"
+                    tooltip={t('Export to .XML format')}
+                    onClick={doExportXML}
+                    className={exportToCSVClasses}
+                  />
+                </Menu.Item>
+              </Menu>
+            }
+          >
+            <div
+              role="button"
+              id="query"
+              tabIndex={0}
+              className="btn btn-default btn-sm"
+            >
+              <i role="img" className="fa  fa-download" />
+            </div>
+          </Dropdown>
         </>
       )}
       <ConnectedDisplayQueryButton
