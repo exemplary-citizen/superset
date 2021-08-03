@@ -430,7 +430,7 @@ class ColumnarToDatabaseView(SimpleFormView):
 
         read = pd.read_parquet
         kwargs = {
-            "columns": form.usecols.data,
+            "columns": form.usecols.data if form.usecols.data else None,
         }
         print("printing kwargs")
         print(kwargs)
