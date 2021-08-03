@@ -432,6 +432,8 @@ class ColumnarToDatabaseView(SimpleFormView):
         kwargs = {
             "columns": form.usecols.data,
         }
+        print("printing kwargs")
+        print(kwargs)
 
         if not schema_allows_csv_upload(database, columnar_table.schema):
             message = _(
@@ -457,7 +459,11 @@ class ColumnarToDatabaseView(SimpleFormView):
 
         try:
             chunks = [read(file, **kwargs) for file in files]
+            print("printing chunks")
+            print(chunks)
             df = pd.concat(chunks)
+            print("printing df")
+            print(df)
 
             database = (
                 db.session.query(models.Database)
