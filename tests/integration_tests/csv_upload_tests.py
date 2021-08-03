@@ -267,7 +267,6 @@ def test_import_csv(setup_csv_upload, create_csv_files):
 
     # initial upload with fail mode
     resp = upload_csv(CSV_FILENAME1, CSV_UPLOAD_TABLE)
-    print(resp)
     assert success_msg_f1 in resp
 
     # upload again with fail mode; should fail
@@ -386,6 +385,7 @@ def test_import_parquet(setup_csv_upload, create_columnar_files):
 
     # initial upload with fail mode
     resp = upload_columnar(PARQUET_FILENAME1, PARQUET_UPLOAD_TABLE)
+    print(resp)
     assert success_msg_f1 in resp
 
     # upload again with fail mode; should fail
