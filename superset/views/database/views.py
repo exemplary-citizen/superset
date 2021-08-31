@@ -420,9 +420,7 @@ class ColumnarToDatabaseView(SimpleFormView):
             )  # pylint: disable=consider-using-with
             file_type = {filename.split(".")[-1] for filename in zipfile_ob.namelist()}
             files = [
-                io.BytesIO(
-                    (zipfile_ob.open(filename).read(), filename)[0]
-                )
+                io.BytesIO((zipfile_ob.open(filename).read(), filename)[0])
                 for filename in zipfile_ob.namelist()
             ]
 
