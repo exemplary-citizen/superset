@@ -66,7 +66,7 @@ jobs:
       - name: Python integration tests (MySQL)
         if: steps.check.outcome == 'failure'
         run: |
-          python scripts/benchmark_migration.py superset/migrations/versions/0ca9e5f1dacd_rename_to_schemas_allowed_for_file_.py --force
+          ./scripts/python_tests.sh
       - name: Upload code coverage
         if: steps.check.outcome == 'failure'
         run: |
@@ -186,7 +186,7 @@ jobs:
       - name: Python integration tests (SQLite)
         if: steps.check.outcome == 'failure'
         run: |
-          ./scripts/python_tests.sh
+          python scripts/benchmark_migration.py superset/migrations/versions/0ca9e5f1dacd_rename_to_schemas_allowed_for_file_.py --force
       - name: Upload code coverage
         if: steps.check.outcome == 'failure'
         run: |
